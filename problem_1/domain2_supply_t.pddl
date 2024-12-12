@@ -18,7 +18,6 @@
     (has ?r - box_robot ?b - box)
     (has_supply ?b - box ?s - supply)
     (has_unit ?s - supply ?u - unit)
-    (is_loading_point ?l - location)
     (free ?r - robot)
     (empty ?b - box)
     (in ?p - person ?u - unit)
