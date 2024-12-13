@@ -52,8 +52,8 @@
 
   (:action load_carrier
     :parameters (?b - box ?s - supply ?r - box_robot ?l - location ?c - carrier ?sl - slot)
-    :precondition (and (empty ?b) (at ?b ?l) (atl ?r ?l) (free ?r) (has_supply_at ?s ?l) (at_location_carrier ?c ?l) (has_slot ?c ?sl) (empty_slot ?sl))
-    :effect (and (not (empty ?b)) (not (free ?r)) (not (empty_slot ?sl)) (has_supply ?b ?s) (has ?r ?c) (contains ?sl ?b) (not (at ?b ?l)))
+    :precondition (and (empty ?b) (at ?b ?l) (atl ?r ?l) (free ?r) (has_supply_at ?s ?l) (has ?r ?c) (at_location_carrier ?c ?l) (has_slot ?c ?sl) (empty_slot ?sl))
+    :effect (and (not (empty ?b)) (not (free ?r)) (not (empty_slot ?sl)) (has_supply ?b ?s) (contains ?sl ?b) (not (at ?b ?l)))
   )
   
   (:action unload_carrier

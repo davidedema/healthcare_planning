@@ -8,7 +8,7 @@ u1 u2 u3 - unit
 b1 b2 b3 - box
 p1 p2 - person
 s1 s2 s3 - supply
-c1 - carrier
+c1 c2 - carrier
 sl1 sl2 sl3 - slot
 )
 
@@ -42,19 +42,29 @@ sl1 sl2 sl3 - slot
     (has_supply_at s2 l1)
     (has_supply_at s3 l1)
 
-    (has r1 c1)
 
     (has_slot c1 sl1)
     (has_slot c1 sl2)
-    (has_slot c1 sl3)
+    (has_slot c2 sl3)
+
+    (at_location_carrier c1 l2)
+    (at_location_carrier c2 l2)
+
+    (has r3 c2)
+    (has r1 c1)
+
+    (empty_slot sl1)
+    (empty_slot sl2)
+    (empty_slot sl3)
 )
 
 (:goal (and
     (has_unit s1 u1)
     (has_unit s3 u1)
     (has_unit s2 u2)
-    (in p1 u2)
-    (in p2 u1)
+    ; (in p1 u2)
+    ; (in p2 u1)
+
 ))
 
 ;un-comment the following line if metric is needed
