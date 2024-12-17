@@ -1,9 +1,10 @@
 (define (problem hc1) (:domain healthcare)
 (:objects 
-r1 - box_robot
+r1 - shilded_bot
 r3 - flying_robot
 r2 - guide_robot
-l1 l2 l3 l4 - location
+l1 l2 - normal_location
+l3 l4 - dangerous_location
 u1 u2 u3 - unit
 b1 b2 b3 - box
 p1 p2 - person
@@ -59,8 +60,8 @@ sl1 sl2 sl3 - slot
 )
 
 (:goal (and
-    (has_unit s1 u1)
-    (has_unit s3 u1)
+    ; (has_unit s1 u1)
+    ; (has_unit s3 u1)
     (has_unit s2 u2)
     ; (in p1 u2)
     ; (in p2 u1)

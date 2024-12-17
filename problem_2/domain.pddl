@@ -7,7 +7,9 @@
     guide_robot - robot
     box_robot - robot
     earth_robot flying_robot - box_robot
+    shilded_bot non_shilded_bot - earth_robot
     slot - carrier
+    normal_location dangerous_location - location
   )
 
   (:predicates
@@ -29,23 +31,34 @@
     (in ?p - person ?u - unit)
     (inl ?p - person ?l - location)
     (accompanying ?r - guide_robot ?p - person)
-
   )
 
   (:action fly_carrier
-    :parameters (?r - flying_robot ?from - location ?to - location ?c - carrier)
+    :parameters (?r - flying_robot ?from - location ?to - normal_location ?c - carrier)
     :precondition (and (atl ?r ?from) (has ?r ?c) (at_location_carrier ?c ?from))
     :effect (and (not (atl ?r ?from)) (not(at_location_carrier ?c ?from)) (atl ?r ?to) (at_location_carrier ?c ?to))
   )
 
   (:action move_carrier
-    :parameters (?r - box_robot ?from - location ?to - location ?c - carrier)
+    :parameters (?r - box_robot ?from - location ?to - normal_location ?c - carrier)
     :precondition (and (atl ?r ?from) (adjacent ?from ?to) (has ?r ?c) (at_location_carrier ?c ?from))
     :effect (and (not (atl ?r ?from)) (not(at_location_carrier ?c ?from)) (atl ?r ?to) (at_location_carrier ?c ?to))
   )
 
   (:action move
-    :parameters (?r - robot ?from - location ?to - location)
+    :parameters (?r - robot ?from - location ?to - normal_location)
+    :precondition (and (atl ?r ?from) (adjacent ?from ?to))
+    :effect (and (not (atl ?r ?from)) (atl ?r ?to))
+  )
+
+  (:action move_carrier_shiled
+    :parameters (?r - shilded_bot ?from - location ?to - dangerous_location ?c - carrier)
+    :precondition (and (atl ?r ?from) (adjacent ?from ?to) (has ?r ?c) (at_location_carrier ?c ?from))
+    :effect (and (not (atl ?r ?from)) (not(at_location_carrier ?c ?from)) (atl ?r ?to) (at_location_carrier ?c ?to))
+  )
+
+  (:action move_shield
+    :parameters (?r - shilded_bot ?from - location ?to - dangerous_location)
     :precondition (and (atl ?r ?from) (adjacent ?from ?to))
     :effect (and (not (atl ?r ?from)) (atl ?r ?to))
   )
