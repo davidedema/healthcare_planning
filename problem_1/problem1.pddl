@@ -40,6 +40,4 @@ p1 p2 - person
     (in p2 u1)
 ))
 
-;un-comment the following line if metric is needed
-;(:metric minimize (???))
 )

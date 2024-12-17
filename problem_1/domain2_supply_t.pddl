@@ -1,25 +1,37 @@
 (define (domain healthcare)
 
+  ; in this domain supplies now are types, they are no more infinite 
+  ; only a person could be accompained by one robot
+
   (:requirements :strips :typing)
 
   (:types
-    location unit robot box supply person - object
+    location unit robot box supply person - object ; added the supply type 
     guide_robot - robot
     box_robot - robot
   )
 
   (:predicates
 
+    ; LOCATION
     (adjacent ?l1 ?l2 - location)
     (belongs ?u - unit ?l - location)
+    
+    ; ROBOT
     (atl ?r - robot ?u - location)
-    (at ?b - box ?l - location)
-    (has_supply_at ?s - supply ?l - location)
     (has ?r - box_robot ?b - box)
-    (has_supply ?b - box ?s - supply)
-    (has_unit ?s - supply ?u - unit)
     (free ?r - robot)
+    
+    ; BOX
+    (at ?b - box ?l - location)
+    (has_supply ?b - box ?s - supply) ; used for specifing if a box contains a supply
     (empty ?b - box)
+    
+    ; SUPPLY
+    (has_supply_at ?s - supply ?l - location) ; used for specifing the location of a supply
+    (has_unit ?s - supply ?u - unit) ; used for specifing if a unit has a supply
+    
+    ; PERSON
     (in ?p - person ?u - unit)
     (inl ?p - person ?l - location)
     (accompanying ?r - guide_robot ?p - person)
@@ -38,12 +50,14 @@
     :effect (and (not (atl ?r ?from)) (atl ?r ?to))
   )
 
+  ; action for filling the box with the supply and loading it onto the robot
   (:action load_box
     :parameters (?b - box ?s - supply ?r - box_robot ?l - location)
     :precondition (and (empty ?b) (at ?b ?l) (atl ?r ?l) (free ?r) (has_supply_at ?s ?l))
     :effect (and (not (empty ?b)) (not (free ?r)) (has_supply ?b ?s) (has ?r ?b))
   )
-  
+
+  ; action for unloading the box and delivering the supply to the unit
   (:action empty_box
     :parameters (?b - box ?s - supply ?r - box_robot ?l - location ?u - unit)
     :precondition (and (has_supply ?b ?s) (at ?b ?l) (atl ?r ?l) (belongs ?u ?l) (has ?r ?b))
