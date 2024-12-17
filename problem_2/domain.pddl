@@ -1,5 +1,14 @@
 (define (domain healthcare)
 
+  ; Extension of domain 1.3
+  ; In this domain there are more types of box_robot
+  ;   earth
+  ;     shilded
+  ;     non shilded
+  ;   flying
+  ; Now robot has carrier with capacity
+
+
   (:requirements :strips :typing)
 
   (:types
@@ -14,31 +23,45 @@
 
   (:predicates
 
+    ; LOCATION
     (adjacent ?l1 ?l2 - location)
     (belongs ?u - unit ?l - location)
+
+    ; ROBOT
     (atl ?r - robot ?u - location)
-    (at ?b - box ?l - location)
-    (at_location_carrier ?c - carrier ?l - location)
-    (has_supply_at ?s - supply ?l - location)
-    (contains ?c - carrier ?b - box)
     (has ?r - box_robot ?c - carrier)
-    (has_supply ?b - box ?s - supply)
-    (has_slot ?c - carrier ?sl - slot)
-    (empty_slot ?sl - slot)
-    (has_unit ?s - supply ?u - unit)
     (free ?r - robot)
+
+    ; BOX
+    (at ?b - box ?l - location)
+    (has_supply ?b - box ?s - supply)
     (empty ?b - box)
+
+    ; CARRIER
+    (at_location_carrier ?c - carrier ?l - location) ; location of the carrier
+    (contains ?c - carrier ?b - box) ; keep track of box in the carrier
+    (has_slot ?c - carrier ?sl - slot) ; keep track of slots in the carrier
+    (empty_slot ?sl - slot) ; if a slot is empty
+
+    ; SUPPLY
+    (has_supply_at ?s - supply ?l - location)
+    (has_unit ?s - supply ?u - unit)
+    
+    ; PERSON
     (in ?p - person ?u - unit)
     (inl ?p - person ?l - location)
     (accompanying ?r - guide_robot ?p - person)
   )
 
+  ; a flying_robot could go from point A to point B also 
+  ; if the two are not connected
   (:action fly_carrier
     :parameters (?r - flying_robot ?from - location ?to - normal_location ?c - carrier)
     :precondition (and (atl ?r ?from) (has ?r ?c) (at_location_carrier ?c ?from))
     :effect (and (not (atl ?r ?from)) (not(at_location_carrier ?c ?from)) (atl ?r ?to) (at_location_carrier ?c ?to))
   )
 
+  ; move the robot with the carrier
   (:action move_carrier
     :parameters (?r - box_robot ?from - location ?to - normal_location ?c - carrier)
     :precondition (and (atl ?r ?from) (adjacent ?from ?to) (has ?r ?c) (at_location_carrier ?c ?from))
@@ -51,24 +74,28 @@
     :effect (and (not (atl ?r ?from)) (atl ?r ?to))
   )
 
+  ; move with the carrier into dangerous locations if the robot is shilded 
   (:action move_carrier_shiled
     :parameters (?r - shilded_bot ?from - location ?to - dangerous_location ?c - carrier)
     :precondition (and (atl ?r ?from) (adjacent ?from ?to) (has ?r ?c) (at_location_carrier ?c ?from))
     :effect (and (not (atl ?r ?from)) (not(at_location_carrier ?c ?from)) (atl ?r ?to) (at_location_carrier ?c ?to))
   )
 
+  ; move into dangerous locations if the robot is shilded 
   (:action move_shield
     :parameters (?r - shilded_bot ?from - location ?to - dangerous_location)
     :precondition (and (atl ?r ?from) (adjacent ?from ?to))
     :effect (and (not (atl ?r ?from)) (atl ?r ?to))
   )
 
+  ; load supply into box and put in a slot of the carrier
   (:action load_carrier
     :parameters (?b - box ?s - supply ?r - box_robot ?l - location ?c - carrier ?sl - slot)
     :precondition (and (empty ?b) (at ?b ?l) (atl ?r ?l) (free ?r) (has_supply_at ?s ?l) (has ?r ?c) (at_location_carrier ?c ?l) (has_slot ?c ?sl) (empty_slot ?sl))
     :effect (and (not (empty ?b)) (not (free ?r)) (not (empty_slot ?sl)) (has_supply ?b ?s) (contains ?sl ?b) (not (at ?b ?l)))
   )
   
+  ; deliver supply to unit and leave box in location and empty the slot
   (:action unload_carrier
     :parameters (?b - box ?s - supply ?r - box_robot ?l - location ?u - unit ?c - carrier ?sl - slot)
     :precondition (and (has_supply ?b ?s) (atl ?r ?l) (belongs ?u ?l) (has ?r ?c) (has_slot ?c ?sl) (contains ?sl ?b) (at_location_carrier ?c ?l))

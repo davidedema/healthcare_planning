@@ -68,6 +68,4 @@ sl1 sl2 sl3 - slot
 
 ))
 
-;un-comment the following line if metric is needed
-;(:metric minimize (???))
 )
