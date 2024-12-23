@@ -52,8 +52,11 @@
     (accompanying ?r - guide_robot ?p - person)
   )
 
-  ;; TASKS
+  ; ####################################################################
 
+  ; TASKS
+
+  ;; BOXES STUFF
   (:task complete_order_task
     :parameters (?s - supply ?u - unit)
     :precondition ()
@@ -72,6 +75,7 @@
     :effect ()
   )
 
+  ;; MOTION STUFF
   (:task go_to
     :parameters (?r - robot ?l - normal_location)
     :precondition ()
@@ -84,77 +88,114 @@
     :effect ()
   )
 
+  ;; ACCOMPANY STUFF
+  (:task start_accompany_task
+    :parameters (?p - person)
+    :precondition ()
+    :effect ()
+  )
+  (:task accompany_task
+    :parameters (?p - person ?u - unit)
+    :precondition ()
+    :effect ()
+  )
+  (:task guide_task
+    :parameters (?p - person ?u - unit)
+    :precondition ()
+    :effect ()
+  )
+
   ;####################################################################
 
   ; METHODS
 
   ;; MOTION METHODS
-  
+
   ;;; CARRIER MOTION
   (:method m_go_to_carrier
-		:parameters (?l1 - location ?l2 - location ?r - robot ?c - carrier)
-		:task (go_to_carrier ?r ?l2 ?c)
-		:subtasks (and
-		 (task0 (move_carrier ?r ?l1 ?l2 ?c))
-		)
-	)
+    :parameters (?l1 - location ?l2 - location ?r - robot ?c - carrier)
+    :task
+    (go_to_carrier ?r ?l2 ?c)
+    :subtasks
+    (and
+      (task0
+        (move_carrier ?r ?l1 ?l2 ?c))
+    )
+  )
 
-	(:method m_recursive_go_to_carrier
-		:parameters (?l2 - location ?l3 - location ?r - robot ?c - carrier)
-		:task (go_to_carrier ?r ?l3 ?c)
-		:subtasks (and
-		 (task0 (go_to_carrier ?r ?l2 ?c))
-		 (task1 (move_carrier ?r ?l2 ?l3 ?c))
-		)
-		:ordering (and
-			(task0 < task1)
-		)
-	)
+  (:method m_recursive_go_to_carrier
+    :parameters (?l2 - location ?l3 - location ?r - robot ?c - carrier)
+    :task
+    (go_to_carrier ?r ?l3 ?c)
+    :subtasks
+    (and
+      (task0
+        (go_to_carrier ?r ?l2 ?c))
+      (task1
+        (move_carrier ?r ?l2 ?l3 ?c))
+    )
+    :ordering
+    (and
+      (task0 < task1)
+    )
+  )
 
-	(:method m_stop_recursion_carrier
-		:parameters (?l - location ?r - robot ?c - carrier)
-		:task (go_to_carrier ?r ?l ?c)
-		:subtasks (and
-		 (task0 (noop ?r ?l))
-		)
-	)
+  (:method m_stop_recursion_carrier
+    :parameters (?l - location ?r - robot ?c - carrier)
+    :task
+    (go_to_carrier ?r ?l ?c)
+    :subtasks
+    (and
+      (task0
+        (noop ?r ?l))
+    )
+  )
 
   ;;; ROBOT MOTION
   (:method m_go_to
-		:parameters (?l1 - location ?l2 - location ?r - robot)
-		:task (go_to ?r ?l2)
-		:subtasks (and
-		 (task0 (move ?r ?l1 ?l2))
-		)
-	)
+    :parameters (?l1 - location ?l2 - location ?r - robot)
+    :task
+    (go_to ?r ?l2)
+    :subtasks
+    (and
+      (task0
+        (move ?r ?l1 ?l2))
+    )
+  )
 
-	(:method m_recursive_go_to
-		:parameters (?l2 - location ?l3 - location ?r - robot)
-		:task (go_to ?r ?l3)
-		:subtasks (and
-		 (task0 (go_to ?r ?l2))
-		 (task1 (move ?r ?l2 ?l3))
-		)
-		:ordering (and
-			(task0 < task1)
-		)
-	)
+  (:method m_recursive_go_to
+    :parameters (?l2 - location ?l3 - location ?r - robot)
+    :task
+    (go_to ?r ?l3)
+    :subtasks
+    (and
+      (task0
+        (go_to ?r ?l2))
+      (task1
+        (move ?r ?l2 ?l3))
+    )
+    :ordering
+    (and
+      (task0 < task1)
+    )
+  )
 
-	(:method m_stop_recursion
-		:parameters (?l - location ?r - robot)
-		:task (go_to ?r ?l)
-		:subtasks (and
-		 (task0 (noop ?r ?l))
-		)
-	)
-
+  (:method m_stop_recursion
+    :parameters (?l - location ?r - robot)
+    :task
+    (go_to ?r ?l)
+    :subtasks
+    (and
+      (task0
+        (noop ?r ?l))
+    )
+  )
 
   ;; SUPPLY METHODS
 
   ;;; LOAD SUPPLY METHOD
   (:method m_load_supply
-    :parameters (?r - box_robot ?l - location ?c - carrier
-                ?b - box ?s - supply ?sl - slot  
+    :parameters (?r - box_robot ?l - location ?c - carrier ?b - box ?s - supply ?sl - slot
     )
     :task
     (load_supply_task ?s)
@@ -173,8 +214,7 @@
   )
 
   (:method m_deliver_supply
-    :parameters (?r - box_robot ?l - location ?c - carrier
-                ?b - box ?s - supply ?sl - slot ?u - unit
+    :parameters (?r - box_robot ?l - location ?c - carrier ?b - box ?s - supply ?sl - slot ?u - unit
     )
     :task
     (unload_supply_task ?s ?u)
@@ -202,6 +242,67 @@
       )
       (task1
         (unload_supply_task ?s ?u)
+      )
+    )
+    :ordering
+    (and
+      (task0 < task1)
+    )
+  )
+
+  ;; ACCOMPANY METHODS
+
+  ;;; START ACCOMPANY
+  (:method m_start_accompany
+    :parameters (?r - guide_robot ?l - location ?p - person)
+    :task
+    (start_accompany_task ?p)
+    :subtasks(and
+      (task0
+        (go_to ?r ?l)
+      )
+      (task1
+        (start_accompany ?r ?l ?p)
+      )
+    )
+    :ordering
+    (and
+      (task0 < task1)
+    )
+  )
+
+  ;;; ACCOMPANY
+
+  (:method m_accompany
+    :parameters (?r - guide_robot ?l - location ?p - person ?u - unit)
+    :task
+    (accompany_task ?p ?u)
+    :subtasks(and
+      (task0
+        (go_to ?r ?l)
+      )
+      (task1
+        (accompany ?r ?l ?p ?u)
+      )
+    )
+    :ordering
+    (and
+      (task0 < task1)
+    )
+  )
+
+  ;;; GUIDE
+
+  (:method m_guide
+    :parameters (?p - person ?u - unit)
+    :task
+    (guide_task ?p ?u)
+    :subtasks(and
+      (task0
+        (start_accompany_task ?p)
+      )
+      (task1
+        (accompany_task ?p ?u)
       )
     )
     :ordering

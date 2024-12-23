@@ -14,15 +14,25 @@
         sl1 sl2 sl3 - slot
     )
 
+    ; (:htn
+    ;     :parameters ()
+    ;     :subtasks
+    ;     (and
+    ;         (task0
+    ;             (complete_order_task s1 u1)
+    ;         )
+    ;         (task1
+    ;             (complete_order_task s2 u3)
+    ;         )
+    ;     )
+    ; )
+
     (:htn
         :parameters ()
         :subtasks
         (and
             (task0
-                (complete_order_task s1 u1)
-            )
-            (task1
-                (complete_order_task s2 u3)
+                (guide_task p1 u2)
             )
         )
     )
