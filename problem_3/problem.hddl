@@ -5,7 +5,8 @@
         r3 - flying_robot
         r2 - guide_robot
         l1 l2 - normal_location
-        l3 l4 - normal_location
+        l3 - normal_location
+        l4 - dangerous_location
         u1 u2 u3 - unit
         b1 b2 b3 - box
         p1 p2 - person
@@ -14,25 +15,12 @@
         sl1 sl2 sl3 - slot
     )
 
-    ; (:htn
-    ;     :parameters ()
-    ;     :subtasks
-    ;     (and
-    ;         (task0
-    ;             (complete_order_task s1 u1)
-    ;         )
-    ;         (task1
-    ;             (complete_order_task s2 u3)
-    ;         )
-    ;     )
-    ; )
-
     (:htn
         :parameters ()
         :subtasks
         (and
             (task0
-                (guide_task p1 u2)
+                (go_to_carrier r1 l4 c1)
             )
         )
     )

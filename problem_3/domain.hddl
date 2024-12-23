@@ -76,14 +76,20 @@
   )
 
   ;; MOTION STUFF
-  (:task go_to
+  (:task go_to_task
     :parameters (?r - robot ?l - normal_location)
     :precondition ()
     :effect ()
   )
 
   (:task go_to_carrier
-    :parameters (?r - box_robot ?l - normal_location ?c - carrier)
+    :parameters (?r - box_robot ?l - location ?c - carrier)
+    :precondition ()
+    :effect ()
+  )
+
+  (:task fly_task 
+    :parameters(?r - flying_robot ?to - location ?c - carrier)
     :precondition ()
     :effect ()
   )
@@ -151,11 +157,54 @@
     )
   )
 
+
+  ;;; CARRIER MOTION SHILDED
+  (:method m_go_to_carrier_shilded
+    :parameters (?l1 - location ?l2 - dangerous_location ?r - shilded_bot ?c - carrier)
+    :task
+    (go_to_carrier ?r ?l2 ?c)
+    :subtasks
+    (and
+      (task0
+        (move_carrier_shiled ?r ?l1 ?l2 ?c))
+    )
+  )
+
+  (:method m_recursive_go_to_carrier_shilded
+    :parameters (?l2 - location ?l3 - location ?r - shilded_bot ?c - carrier)
+    :task
+    (go_to_carrier ?r ?l3 ?c)
+    :subtasks
+    (and
+      (task0
+        (go_to_carrier ?r ?l2 ?c))
+      (task1
+        (move_carrier_shiled ?r ?l2 ?l3 ?c))
+    )
+    :ordering
+    (and
+      (task0 < task1)
+    )
+  )
+
+  (:method m_stop_recursion_carrier_shilded
+    :parameters (?l - dangerous_location ?r - shilded_bot ?c - carrier)
+    :task
+    (go_to_carrier ?r ?l ?c)
+    :subtasks
+    (and
+      (task0
+        (noop ?r ?l))
+    )
+  )
+
+
+
   ;;; ROBOT MOTION
   (:method m_go_to
     :parameters (?l1 - location ?l2 - location ?r - robot)
     :task
-    (go_to ?r ?l2)
+    (go_to_task ?r ?l2)
     :subtasks
     (and
       (task0
@@ -166,11 +215,11 @@
   (:method m_recursive_go_to
     :parameters (?l2 - location ?l3 - location ?r - robot)
     :task
-    (go_to ?r ?l3)
+    (go_to_task ?r ?l3)
     :subtasks
     (and
       (task0
-        (go_to ?r ?l2))
+        (go_to_task ?r ?l2))
       (task1
         (move ?r ?l2 ?l3))
     )
@@ -183,7 +232,7 @@
   (:method m_stop_recursion
     :parameters (?l - location ?r - robot)
     :task
-    (go_to ?r ?l)
+    (go_to_task ?r ?l)
     :subtasks
     (and
       (task0
@@ -191,11 +240,24 @@
     )
   )
 
+  ;;; FLY MOTION
+
+  (:method m_fly
+    :parameters (?r - flying_robot ?from - location ?to - location ?c - carrier)
+    :task
+    (fly_task ?r ?to ?c)
+    :subtasks
+    (and
+      (task0
+        (fly_carrier ?r ?from ?to ?c))
+    )
+  )
+
   ;; SUPPLY METHODS
 
   ;;; LOAD SUPPLY METHOD
   (:method m_load_supply
-    :parameters (?r - box_robot ?l - location ?c - carrier ?b - box ?s - supply ?sl - slot
+    :parameters (?r - earth_robot ?l - location ?c - carrier ?b - box ?s - supply ?sl - slot
     )
     :task
     (load_supply_task ?s)
@@ -213,8 +275,9 @@
     )
   )
 
+  ;;; DELIVER SUPPLY METHOD
   (:method m_deliver_supply
-    :parameters (?r - box_robot ?l - location ?c - carrier ?b - box ?s - supply ?sl - slot ?u - unit
+    :parameters (?r - earth_robot ?l - location ?c - carrier ?b - box ?s - supply ?sl - slot ?u - unit
     )
     :task
     (unload_supply_task ?s ?u)
@@ -232,6 +295,7 @@
     )
   )
 
+  ;;; COMPLETE ORDER
   (:method m_complete_order
     :parameters (?s - supply ?u - unit)
     :task
@@ -250,6 +314,46 @@
     )
   )
 
+;;; LOAD SUPPLY METHOD
+  (:method m_load_supply_fly
+    :parameters (?r - flying_robot ?l - location ?c - carrier ?b - box ?s - supply ?sl - slot
+    )
+    :task
+    (load_supply_task ?s)
+    :subtasks(and
+      (task0
+        (fly_task ?r ?l ?c)
+      )
+      (task1
+        (load_carrier ?b ?s ?r ?l ?c ?sl)
+      )
+    )
+    :ordering
+    (and
+      (task0 < task1)
+    )
+  )
+
+  ;;; DELIVER SUPPLY METHOD
+  (:method m_deliver_supply_fly
+    :parameters (?r - flying_robot ?l - location ?c - carrier ?b - box ?s - supply ?sl - slot ?u - unit
+    )
+    :task
+    (unload_supply_task ?s ?u)
+    :subtasks(and
+      (task0
+        (fly_task ?r ?l ?c)
+      )
+      (task1
+        (unload_carrier ?b ?s ?r ?l ?u ?c ?sl)
+      )
+    )
+    :ordering
+    (and
+      (task0 < task1)
+    )
+  )
+
   ;; ACCOMPANY METHODS
 
   ;;; START ACCOMPANY
@@ -259,7 +363,7 @@
     (start_accompany_task ?p)
     :subtasks(and
       (task0
-        (go_to ?r ?l)
+        (go_to_task ?r ?l)
       )
       (task1
         (start_accompany ?r ?l ?p)
@@ -279,7 +383,7 @@
     (accompany_task ?p ?u)
     :subtasks(and
       (task0
-        (go_to ?r ?l)
+        (go_to_task ?r ?l)
       )
       (task1
         (accompany ?r ?l ?p ?u)
