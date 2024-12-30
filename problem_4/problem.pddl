@@ -4,11 +4,11 @@ r1 - shilded_bot
 r3 - flying_robot
 r2 - guide_robot
 l1 l2 - normal_location
-l3 l4 - dangerous_location
+l3 l4 - normal_location
 u1 u2 u3 - unit
-b1 b2 b3 - box
+b1 b2 b3 b4 b5 - box
 p1 p2 - person
-s1 s2 s3 - supply
+s1 s2 s3 s4 s5 - supply
 c1 c2 - carrier
 sl1 sl2 sl3 - slot
 )
@@ -26,6 +26,8 @@ sl1 sl2 sl3 - slot
     (at b1 l1)
     (at b2 l1)
     (at b3 l1)
+    (at b4 l1)
+    (at b5 l1)
     (atl r1 l2)
     (atl r2 l2)
     (atl r3 l2)
@@ -39,9 +41,13 @@ sl1 sl2 sl3 - slot
     (empty b1)
     (empty b2)
     (empty b3)
+    (empty b4)
+    (empty b5)
     (has_supply_at s1 l1)
     (has_supply_at s2 l1)
     (has_supply_at s3 l1)
+    (has_supply_at s4 l1)
+    (has_supply_at s5 l1)
 
 
     (has_slot c1 sl1)
@@ -60,12 +66,14 @@ sl1 sl2 sl3 - slot
 )
 
 (:goal (and
-    ; (has_unit s1 u1)
-    ; (has_unit s3 u1)
-    (has_unit s2 u2)
-    ; (in p1 u2)
-    ; (in p2 u1)
+    (has_unit s1 u1)
+    (has_unit s3 u1)
+    ;(has_unit s2 u2)
+    ; (has_unit s4 u2)
+    ; (has_unit s5 u2)
+    (in p1 u2)
+    (in p2 u1)
 
 ))
-
+(:metric minimize (total-time))
 )
