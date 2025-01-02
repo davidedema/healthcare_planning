@@ -12,12 +12,10 @@
   (:requirements :strips :typing)
 
   (:types
-    location unit robot box supply person carrier - object
-    guide_robot - robot
-    box_robot - robot
+    location unit robot box supply person carrier slot - object
+    guide_robot box_robot - robot
     earth_robot flying_robot - box_robot
     shilded_bot non_shilded_bot - earth_robot
-    slot - carrier
     normal_location dangerous_location - location
   )
 
@@ -39,7 +37,7 @@
 
     ; CARRIER
     (at_location_carrier ?c - carrier ?l - location) ; location of the carrier
-    (contains ?c - carrier ?b - box) ; keep track of box in the carrier
+    (contains ?sl - slot ?b - box) ; keep track of box in the carrier
     (has_slot ?c - carrier ?sl - slot) ; keep track of slots in the carrier
     (empty_slot ?sl - slot) ; if a slot is empty
 

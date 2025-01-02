@@ -11,7 +11,7 @@ class LoadCarrier : public plansys2::ActionExecutorClient {
  public:
   double duration;
   
-  Move()
+  LoadCarrier()
       : plansys2::ActionExecutorClient(
             "load_carrier",
             100ms) {

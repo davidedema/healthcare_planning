@@ -11,7 +11,7 @@ class MoveCarrierShield : public plansys2::ActionExecutorClient {
  public:
   double duration;
   
-  Move()
+  MoveCarrierShield()
       : plansys2::ActionExecutorClient(
             "move_carrier_shield",
             100ms) {

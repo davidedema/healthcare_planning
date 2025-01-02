@@ -5,13 +5,8 @@
   (:requirements :strips :typing :durative-actions)
 
   (:types
-    location unit robot box supply person carrier - object
-    guide_robot - robot
-    box_robot - robot
-    earth_robot flying_robot - box_robot
-    shilded_bot non_shilded_bot - earth_robot
-    slot - carrier
-    normal_location dangerous_location - location
+    location unit robot box supply person carrier slot - object
+    guide_robot box_robot - robot
   )
 
   (:predicates
@@ -32,7 +27,7 @@
 
     ; CARRIER
     (at_location_carrier ?c - carrier ?l - location) ; location of the carrier
-    (contains ?c - carrier ?b - box) ; keep track of box in the carrier
+    (contains ?sl - slot ?b - box) ; keep track of box in the carrier
     (has_slot ?c - carrier ?sl - slot) ; keep track of slots in the carrier
     (empty_slot ?sl - slot) ; if a slot is empty
 
@@ -49,37 +44,37 @@
   ; a flying_robot could go from point A to point B also 
   ; if the two are not connected
   ; (:action fly_carrier
-  ;   :parameters (?r - flying_robot ?from - location ?to - normal_location ?c - carrier)
+  ;   :parameters (?r - flying_robot ?from - location ?to - location ?c - carrier)
   ;   :precondition (and (atl ?r ?from) (has ?r ?c) (at_location_carrier ?c ?from))
   ;   :effect (and (not (atl ?r ?from)) (not(at_location_carrier ?c ?from)) (atl ?r ?to) (at_location_carrier ?c ?to))
   ; )
-  (:durative-action fly_carrier
-    :parameters (?r - flying_robot ?from - location ?to - normal_location ?c - carrier)
-    :duration (= ?duration 1)
-    :condition (and
-      (at start (and (atl ?r ?from) (at_location_carrier ?c ?from)
-        ))
-      (over all (and (has ?r ?c)
-        ))
-      ; (at end (and 
-      ; ))
-    )
-    :effect (and
-      (at start (and (not (atl ?r ?from)) (not(at_location_carrier ?c ?from))
-        ))
-      (at end (and
-          (atl ?r ?to) (at_location_carrier ?c ?to))
-      ))
-  )
+  ; (:durative-action fly_carrier
+  ;   :parameters (?r - flying_robot ?from - location ?to - location ?c - carrier)
+  ;   :duration (= ?duration 1)
+  ;   :condition (and
+  ;     (at start (and (atl ?r ?from) (at_location_carrier ?c ?from)
+  ;       ))
+  ;     (over all (and (has ?r ?c)
+  ;       ))
+  ;     ; (at end (and 
+  ;     ; ))
+  ;   )
+  ;   :effect (and
+  ;     (at start (and (not (atl ?r ?from)) (not(at_location_carrier ?c ?from))
+  ;       ))
+  ;     (at end (and
+  ;         (atl ?r ?to) (at_location_carrier ?c ?to))
+  ;     ))
+  ; )
 
   ; ; move the robot with the carrier
   ; (:action move_carrier
-  ;   :parameters (?r - box_robot ?from - location ?to - normal_location ?c - carrier)
+  ;   :parameters (?r - box_robot ?from - location ?to - location ?c - carrier)
   ;   :precondition (and (atl ?r ?from) (adjacent ?from ?to) (has ?r ?c) (at_location_carrier ?c ?from))
   ;   :effect (and (not (atl ?r ?from)) (not(at_location_carrier ?c ?from)) (atl ?r ?to) (at_location_carrier ?c ?to))
   ; )
   (:durative-action move_carrier
-    :parameters (?r - box_robot ?from - location ?to - normal_location ?c - carrier)
+    :parameters (?r - box_robot ?from - location ?to - location ?c - carrier)
     :duration (= ?duration 1)
     :condition (and
       (at start (atl ?r ?from))
@@ -101,12 +96,12 @@
   )
 
   ; (:action move
-  ;   :parameters (?r - robot ?from - location ?to - normal_location)
+  ;   :parameters (?r - robot ?from - location ?to - location)
   ;   :precondition (and (atl ?r ?from) (adjacent ?from ?to))
   ;   :effect (and (not (atl ?r ?from)) (atl ?r ?to))
   ; )
   (:durative-action move
-    :parameters (?r - robot ?from - location ?to - normal_location)
+    :parameters (?r - robot ?from - location ?to - location)
     :duration (= ?duration 1)
     :condition (and
       (at start (and (atl ?r ?from)
@@ -130,24 +125,24 @@
   ;   :precondition (and (atl ?r ?from) (adjacent ?from ?to) (has ?r ?c) (at_location_carrier ?c ?from))
   ;   :effect (and (not (atl ?r ?from)) (not(at_location_carrier ?c ?from)) (atl ?r ?to) (at_location_carrier ?c ?to))
   ; )
-  (:durative-action move_carrier_shiled
-    :parameters (?r - shilded_bot ?from - location ?to - dangerous_location ?c - carrier)
-    :duration (= ?duration 2)
-    :condition (and
-      (at start (and (atl ?r ?from) (at_location_carrier ?c ?from)
-        ))
-      (over all (and (adjacent ?from ?to) (has ?r ?c)
-        ))
-      ; (at end (and 
-      ; ))
-    )
-    :effect (and
-      (at start (and (not (atl ?r ?from)) (not(at_location_carrier ?c ?from))
-        ))
-      (at end (and
-          (atl ?r ?to) (at_location_carrier ?c ?to))
-      ))
-  )
+  ; (:durative-action move_carrier_shiled
+  ;   :parameters (?r - shilded_bot ?from - location ?to - dangerous_location ?c - carrier)
+  ;   :duration (= ?duration 2)
+  ;   :condition (and
+  ;     (at start (and (atl ?r ?from) (at_location_carrier ?c ?from)
+  ;       ))
+  ;     (over all (and (adjacent ?from ?to) (has ?r ?c)
+  ;       ))
+  ;     ; (at end (and 
+  ;     ; ))
+  ;   )
+  ;   :effect (and
+  ;     (at start (and (not (atl ?r ?from)) (not(at_location_carrier ?c ?from))
+  ;       ))
+  ;     (at end (and
+  ;         (atl ?r ?to) (at_location_carrier ?c ?to))
+  ;     ))
+  ; )
 
   ; ; move into dangerous locations if the robot is shilded 
   ; (:action move_shield
@@ -156,24 +151,24 @@
   ;   :effect (and (not (atl ?r ?from)) (atl ?r ?to))
   ; )
 
-  (:durative-action move_shield
-    :parameters (?r - shilded_bot ?from - location ?to - dangerous_location)
-    :duration (= ?duration 2)
-    :condition (and
-      (at start (and (atl ?r ?from)
-        ))
-      (over all (and (adjacent ?from ?to)
-        ))
-      ; (at end (and 
-      ; ))
-    )
-    :effect (and
-      (at start (and (not (atl ?r ?from))
-        ))
-      (at end (and
-          (atl ?r ?to))
-      ))
-  )
+  ; (:durative-action move_shield
+  ;   :parameters (?r - shilded_bot ?from - location ?to - dangerous_location)
+  ;   :duration (= ?duration 2)
+  ;   :condition (and
+  ;     (at start (and (atl ?r ?from)
+  ;       ))
+  ;     (over all (and (adjacent ?from ?to)
+  ;       ))
+  ;     ; (at end (and 
+  ;     ; ))
+  ;   )
+  ;   :effect (and
+  ;     (at start (and (not (atl ?r ?from))
+  ;       ))
+  ;     (at end (and
+  ;         (atl ?r ?to))
+  ;     ))
+  ; )
 
   ; ; load supply into box and put in a slot of the carrier
   ; (:action load_carrier

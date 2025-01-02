@@ -11,7 +11,7 @@ class UnloadCarrier : public plansys2::ActionExecutorClient {
  public:
   double duration;
   
-  Move()
+  UnloadCarrier()
       : plansys2::ActionExecutorClient(
             "unload_carrier",
             100ms) {

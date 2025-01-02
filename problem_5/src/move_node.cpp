@@ -7,23 +7,29 @@
 
 using namespace std::chrono_literals;
 
-class Move : public plansys2::ActionExecutorClient {
- public:
+class Move : public plansys2::ActionExecutorClient
+{
+public:
   double duration;
-  
+
   Move()
       : plansys2::ActionExecutorClient(
             "move",
-            100ms) {
+            100ms)
+  {
     progress_ = 0.0;
   }
 
- private:
-  void do_work() {
-    if (progress_ < 1.0) {
+private:
+  void do_work()
+  {
+    if (progress_ < 1.0)
+    {
       progress_ += 1 / (duration * 1000 / 100);
       send_feedback(progress_, "move running");
-    } else {
+    }
+    else
+    {
       finish(true, 1.0, "move completed");
 
       progress_ = 0.0;
@@ -38,7 +44,8 @@ class Move : public plansys2::ActionExecutorClient {
   float progress_;
 };
 
-int main(int argc, char** argv) {
+int main(int argc, char **argv)
+{
   rclcpp::init(argc, argv);
   auto node = std::make_shared<Move>();
   node->declare_parameter("duration", 1.0);

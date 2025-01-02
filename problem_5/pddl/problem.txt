@@ -1,0 +1,36 @@
+set instance ra box_robot
+set instance rb guide_robot
+set instance la location
+set instance lb location
+set instance lc location
+set instance ld location
+set instance ua unit
+set instance ba box
+set instance sa supply
+set instance ca carrier
+set instance sla slot
+set instance slb slot
+set instance pa person
+
+set predicate (adjacent la lb)
+set predicate (adjacent lb la)
+set predicate (adjacent lb lc)
+set predicate (adjacent lc lb)
+set predicate (adjacent lc ld)
+set predicate (adjacent ld lc)
+set predicate (belongs ua lc)
+set predicate (at ba la)
+set predicate (atl ra lb)
+set predicate (atl rb lb)
+set predicate (free ra)
+set predicate (empty ba)
+set predicate (has_supply_at sa la)
+set predicate (has_slot ca sla)
+set predicate (has_slot ca slb)
+set predicate (empty_slot sla)
+set predicate (empty_slot slb)
+set predicate (has ra ca)
+set predicate (at_location_carrier ca lb)
+set predicate (inl pa lb)
+
+set goal (and (has_unit sa ua) (in pa ua))

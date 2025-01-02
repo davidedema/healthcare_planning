@@ -11,7 +11,7 @@ class Accompany : public plansys2::ActionExecutorClient {
  public:
   double duration;
   
-  Move()
+  Accompany()
       : plansys2::ActionExecutorClient(
             "accompany",
             100ms) {

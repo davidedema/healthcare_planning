@@ -11,7 +11,7 @@ class MoveShield : public plansys2::ActionExecutorClient {
  public:
   double duration;
   
-  Move()
+  MoveShield()
       : plansys2::ActionExecutorClient(
             "move_shield",
             100ms) {
