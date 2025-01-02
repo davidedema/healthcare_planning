@@ -7,13 +7,13 @@
 
 using namespace std::chrono_literals;
 
-class Move : public plansys2::ActionExecutorClient {
+class MoveShield : public plansys2::ActionExecutorClient {
  public:
   double duration;
   
   Move()
       : plansys2::ActionExecutorClient(
-            "move",
+            "move_shield",
             100ms) {
     progress_ = 0.0;
   }
@@ -22,16 +22,16 @@ class Move : public plansys2::ActionExecutorClient {
   void do_work() {
     if (progress_ < 1.0) {
       progress_ += 1 / (duration * 1000 / 100);
-      send_feedback(progress_, "Move running");
+      send_feedback(progress_, "move shield running");
     } else {
-      finish(true, 1.0, "Move completed");
+      finish(true, 1.0, "move shield completed");
 
       progress_ = 0.0;
       std::cout << std::endl;
     }
 
     std::cout << "\r\e[K" << std::flush;
-    std::cout << "Requesting for moving ... ["
+    std::cout << "Requesting for move shield ... ["
               << std::min(100.0, progress_ * 100.0) << "%]  " << std::flush;
   }
 
@@ -40,10 +40,10 @@ class Move : public plansys2::ActionExecutorClient {
 
 int main(int argc, char** argv) {
   rclcpp::init(argc, argv);
-  auto node = std::make_shared<Move>();
-  node->declare_parameter("duration", 1.0);
+  auto node = std::make_shared<MoveShield>();
+  node->declare_parameter("duration", 2.0);
   node->duration = node->get_parameter("duration").as_double();
-  node->set_parameter(rclcpp::Parameter("action_name", "move"));
+  node->set_parameter(rclcpp::Parameter("action_name", "move_shield"));
   node->trigger_transition(
       lifecycle_msgs::msg::Transition::TRANSITION_CONFIGURE);
 
