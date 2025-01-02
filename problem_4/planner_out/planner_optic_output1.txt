@@ -1,0 +1,41 @@
+number of literals: 51
+constructing lookup tables: [10%] [20%] [30%] [40%] [50%] [60%] [70%] [80%] [90%] [100%]
+post filtering unreachable actions:  [10%] [20%] [30%] [40%] [50%] [60%] [70%] [80%] [90%] [100%]
+seeing if metric is defined in terms of task vars or a minimal value of makespan
+- yes it is
+recognised a monotonic-change-induced limit on -1.000*
+- must be >=  the metric
+[01;31mlooking for achievers for goal index 0, fact (has_unit s1 u1) with fid 33[00m
+ (unload_carrier b1 s1 r1 l3 u1 c1 sl1) (unload_carrier b2 s1 r1 l3 u1 c1 sl1) (unload_carrier b3 s1 r1 l3 u1 c1 sl1) (unload_carrier b1 s1 r1 l3 u1 c1 sl2) (unload_carrier b2 s1 r1 l3 u1 c1 sl2) (unload_carrier b3 s1 r1 l3 u1 c1 sl2)
+[01;34mfor limits: literal goal index 0, fact (has_unit s1 u1), could be achieved by operator (unload_carrier b1 s1 r1 l3 u1 c1 sl1), which has other interesting effects (including one on (free r1) )[00m
+78% of the ground temporal actions in this problem are compression-safe
+initial heuristic = 5.000, admissible cost estimate 7.003
+b (4.000 | 4.001)b (3.000 | 4.001)b (2.000 | 5.001)b (1.000 | 6.002)(g)
+; lp calculated the cost
+
+; plan found with metric 9.002
+; theoretical reachable cost 9.004
+; states evaluated so far: 8
+; states pruned based on pre-heuristic cost lower bound: 0
+; time 0.11
+0.000: (move_carrier r1 l2 l1 c1)  [1.000]
+1.001: (load_carrier b1 s1 r1 l1 c1 sl1)  [3.000]
+4.001: (move_carrier r1 l1 l2 c1)  [1.000]
+5.002: (move_carrier r1 l2 l3 c1)  [1.000]
+6.002: (unload_carrier b1 s1 r1 l3 u1 c1 sl1)  [3.000]
+
+ * all goal deadlines now no later than 9.002
+
+resorting to best-first search
+running wa* with w = 5.000, not restarting with goal states
+b (4.000 | 4.001)b (3.000 | 4.001)
+problem unsolvable
+;;;; solution found
+; states evaluated: 470
+; cost: 9.002
+; time 0.31
+0.000: (move_carrier r1 l2 l1 c1)  [1.000]
+1.001: (load_carrier b1 s1 r1 l1 c1 sl1)  [3.000]
+4.001: (move_carrier r1 l1 l2 c1)  [1.000]
+5.002: (move_carrier r1 l2 l3 c1)  [1.000]
+6.002: (unload_carrier b1 s1 r1 l3 u1 c1 sl1)  [3.000]

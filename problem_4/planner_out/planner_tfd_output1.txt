@@ -1,0 +1,111 @@
+parsing...
+contains quantified condition(s): false
+instantiating...
+trivial rules: converted to facts.
+starting instantiation [111 rules]...
+finding invariants...
+finding invariants... 33 initial candidates
+[0.020s cpu, 0.019s wall-clock]
+checking invariant weight... [0.000s cpu, 0.000s wall-clock]
+instantiating groups...
+choosing groups...
+51 uncovered facts (before using the results from the invariant synthesis)
+14 uncovered facts
+building translation key...
+building strips to sas dictionary...
+translating task...
+processing axioms...
+found 0 axioms that are always true and 0 that are always false
+constrained 162 conditions
+writing output...
+done!
+contains_quantified_conditions: 0
+building causal graph...
+the causal graph is not acyclic.
+variable var10 is not necessary!
+23 variables of 24 necessary
+84 of 84 operators necessary.
+0 of 0 axiom_relational rules necessary.
+0 of 0 axiom_functional rules necessary.
+building domain transition graphs...
+solveable in poly time 0
+building successor generator...
+all_operator_indices.size(): 84
+writing output...
+printing sg 
+23
+done
+
+
+planner paramters:
+anytime search: disabled
+timeout if plan was found: 0 seconds (no timeout)
+timeout while no plan was found: 0 seconds (no timeout)
+greedy search: disabled
+verbose: enabled
+lazy heuristic evaluation: enabled
+use caching in heuristic.
+cyclic cg heuristic: enabled 	preferred operators: enabled
+makespan heuristic: disabled 	preferred operators: disabled
+no heuristic: disabled
+cg heuristic zero cost waiting transitions: enabled
+cg heuristic fire waiting transitions only if local problems matches state: disabled
+prefopsorderedmode: enabled with 1 goals
+prefopscheapestmode: enabled with 1 goals
+prefopsmostexpensivemode: disabled with 1000 goals
+prefopsrandmode: disabled with 1000 goals
+prefopsconcurrentmode: disabled
+reset after solution was found: enabled
+reward only preferred operators queue: disabled
+gvalues by: timestamp
+queue management mode: priority based
+known by logical state only filtering: disabled
+use_subgoals_to_break_makespan_ties: disabled
+reschedule plans: enabled
+epsilonize internally: enabled
+epsilonize externally: disabled
+keep original plans: enabled
+plan name: "./output_plan"
+plan monitor file: "" (no monitoring)
+monitoring verify timestamps: disabled
+
+contains universal conditions: 0
+giving prior boost to open list 0
+init
+open list sizes (priorities): 0 (-5000),  0 (0),  0 (0),  0 (0), 
+initializing cyclic causal graph heuristic...done.
+best heuristic values of queues: 15/-1/-1/-1 [expanded 1 state(s)]
+best heuristic values of queues: 13.98/-1/-1/-1 [expanded 3 state(s)]
+best heuristic values of queues: 13/-1/-1/-1 [expanded 4 state(s)]
+best heuristic values of queues: 9.98/-1/-1/-1 [expanded 5 state(s)]
+best heuristic values of queues: 7/-1/-1/-1 [expanded 6 state(s)]
+best heuristic values of queues: 5.98/-1/-1/-1 [expanded 8 state(s)]
+best heuristic values of queues: 5/-1/-1/-1 [expanded 9 state(s)]
+best heuristic values of queues: 3.98/-1/-1/-1 [expanded 11 state(s)]
+best heuristic values of queues: 3/-1/-1/-1 [expanded 12 state(s)]
+best heuristic values of queues: 0/-1/-1/-1 [expanded 14 state(s)]
+new solution has been found.
+
+found new plan:
+0.00000000: (move_carrier r1 l2 l1 c1) [1.00000000]
+1.01000000: (load_carrier b1 s1 r1 l1 c1 sl1) [3.00000000]
+4.02000000: (move_carrier r1 l1 l2 c1) [1.00000000]
+5.03000000: (move_carrier r1 l2 l3 c1) [1.00000000]
+6.04000000: (unload_carrier b1 s1 r1 l3 u1 c1 sl1) [3.00000000]
+rescheduled plan:
+0.00100000: (move_carrier r1 l2 l1 c1) [1.00000000]
+1.01100000: (load_carrier b1 s1 r1 l1 c1 sl1) [3.00000000]
+4.02100000: (move_carrier r1 l1 l2 c1) [1.00000000]
+5.03100000: (move_carrier r1 l2 l3 c1) [1.00000000]
+6.04100000: (unload_carrier b1 s1 r1 l3 u1 c1 sl1) [3.00000000]
+solution with original makespan 9.04 found (ignoring no-moving-targets-rule).
+plan length: 5 step(s).
+makespan   : 9.041
+rescheduled makespan   : 9.041
+search time: 0 seconds - walltime: 0.00130296 seconds
+total time: 0 seconds - walltime: 0.00658298 seconds
+0.00100000: (move_carrier r1 l2 l1 c1) [1.00000000]
+1.01100000: (load_carrier b1 s1 r1 l1 c1 sl1) [3.00000000]
+4.02100000: (move_carrier r1 l1 l2 c1) [1.00000000]
+5.03100000: (move_carrier r1 l2 l3 c1) [1.00000000]
+6.04100000: (unload_carrier b1 s1 r1 l3 u1 c1 sl1) [3.00000000]

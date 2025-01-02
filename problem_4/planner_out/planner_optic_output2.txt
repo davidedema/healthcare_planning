@@ -1,0 +1,56 @@
+number of literals: 75
+constructing lookup tables: [10%] [20%] [30%] [40%] [50%] [60%] [70%] [80%] [90%] [100%]
+post filtering unreachable actions:  [10%] [20%] [30%] [40%] [50%] [60%] [70%] [80%] [90%] [100%]
+seeing if metric is defined in terms of task vars or a minimal value of makespan
+- yes it is
+recognised a monotonic-change-induced limit on -1.000*
+- must be >=  the metric
+[01;31mlooking for achievers for goal index 0, fact (has_unit s1 u1) with fid 51[00m
+ (unload_carrier b1 s1 r1 l3 u1 c1 sl1) (unload_carrier b2 s1 r1 l3 u1 c1 sl1) (unload_carrier b3 s1 r1 l3 u1 c1 sl1) (unload_carrier b1 s1 r1 l3 u1 c1 sl2) (unload_carrier b2 s1 r1 l3 u1 c1 sl2) (unload_carrier b3 s1 r1 l3 u1 c1 sl2) (unload_carrier b1 s1 r3 l3 u1 c2 sl3) (unload_carrier b2 s1 r3 l3 u1 c2 sl3) (unload_carrier b3 s1 r3 l3 u1 c2 sl3)
+[01;34mfor limits: literal goal index 0, fact (has_unit s1 u1), could be achieved by operator (unload_carrier b1 s1 r1 l3 u1 c1 sl1), which has other interesting effects (including one on (free r1) )[00m
+[01;31mlooking for achievers for goal index 1, fact (in p1 u1) with fid 71[00m
+ (accompany r2 l3 p1 u1)
+[01;34mfor limits: literal goal index 1, fact (in p1 u1), could be achieved by operator (accompany r2 l3 p1 u1), which has other interesting effects (including one on (inl p1 l3) )[00m
+80% of the ground temporal actions in this problem are compression-safe
+initial heuristic = 8.000, admissible cost estimate 7.003
+b (7.000 | 1.000)b (6.000 | 2.000)b (5.000 | 3.000)b (4.000 | 3.000)b (3.000 | 5.000)b (2.000 | 5.001)b (1.000 | 6.000)(g)
+; lp calculated the cost
+
+; plan found with metric 9.001
+; theoretical reachable cost 9.002
+; states evaluated so far: 16
+; states pruned based on pre-heuristic cost lower bound: 0
+; time 0.12
+0.000: (start_accompany r2 l2 p1)  [1.000]
+0.000: (move_carrier r1 l2 l3 c1)  [1.000]
+0.000: (fly_carrier r3 l2 l3 c2)  [1.000]
+1.000: (move r2 l2 l3)  [1.000]
+1.001: (fly_carrier r3 l3 l1 c2)  [1.000]
+2.000: (accompany r2 l3 p1 u1)  [1.000]
+2.001: (load_carrier b1 s1 r3 l1 c2 sl3)  [3.000]
+5.001: (fly_carrier r3 l1 l3 c2)  [1.000]
+6.001: (unload_carrier b1 s1 r3 l3 u1 c2 sl3)  [3.000]
+
+ * all goal deadlines now no later than 9.001
+
+resorting to best-first search
+running wa* with w = 5.000, not restarting with goal states
+b (7.000 | 1.000)b (6.000 | 2.000)b (6.000 | 1.000)b (5.000 | 3.000)b (5.000 | 2.000)b (4.000 | 3.000)b (3.000 | 4.001)b (2.000 | 4.001)b (1.000 | 5.001)(g)
+; lp calculated the cost
+
+; plan found with metric 8.001
+; theoretical reachable cost 8.003
+; states evaluated so far: 117
+; states pruned based on pre-heuristic cost lower bound: 0
+; time 0.16
+0.000: (start_accompany r2 l2 p1)  [1.000]
+0.000: (fly_carrier r3 l2 l1 c2)  [1.000]
+0.000: (move r1 l2 l1)  [1.000]
+1.000: (move r2 l2 l3)  [1.000]
+1.001: (load_carrier b1 s1 r3 l1 c2 sl3)  [3.000]
+2.000: (accompany r2 l3 p1 u1)  [1.000]
+4.001: (fly_carrier r3 l1 l3 c2)  [1.000]
+5.001: (unload_carrier b1 s1 r3 l3 u1 c2 sl3)  [3.000]
+
+ * all goal deadlines now no later than 8.001
+(g)(g)(g)(g)(g)(g)(g)(g)(g)(g)(g)(g)(g)(g)(g)(g)(g)(g)(g)(g)(g)(g)(g)(g)(g)(g)(g)(g)(g)(g)(g)(g)(g)(g)(g)(g)

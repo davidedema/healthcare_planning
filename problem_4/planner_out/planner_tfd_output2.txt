@@ -1,0 +1,126 @@
+parsing...
+contains quantified condition(s): false
+instantiating...
+trivial rules: converted to facts.
+starting instantiation [111 rules]...
+finding invariants...
+finding invariants... 33 initial candidates
+[0.020s cpu, 0.019s wall-clock]
+checking invariant weight... [0.000s cpu, 0.000s wall-clock]
+instantiating groups...
+choosing groups...
+79 uncovered facts (before using the results from the invariant synthesis)
+21 uncovered facts
+building translation key...
+building strips to sas dictionary...
+translating task...
+processing axioms...
+found 0 axioms that are always true and 0 that are always false
+constrained 258 conditions
+writing output...
+done!
+contains_quantified_conditions: 0
+building causal graph...
+the causal graph is not acyclic.
+variable var4 is not necessary!
+variable var17 is not necessary!
+variable var29 is not necessary!
+variable var31 is not necessary!
+variable var32 is not necessary!
+variable var33 is not necessary!
+31 variables of 37 necessary
+136 of 140 operators necessary.
+0 of 0 axiom_relational rules necessary.
+0 of 0 axiom_functional rules necessary.
+building domain transition graphs...
+solveable in poly time 0
+building successor generator...
+all_operator_indices.size(): 136
+writing output...
+printing sg 
+31
+done
+
+
+planner paramters:
+anytime search: disabled
+timeout if plan was found: 0 seconds (no timeout)
+timeout while no plan was found: 0 seconds (no timeout)
+greedy search: disabled
+verbose: enabled
+lazy heuristic evaluation: enabled
+use caching in heuristic.
+cyclic cg heuristic: enabled 	preferred operators: enabled
+makespan heuristic: disabled 	preferred operators: disabled
+no heuristic: disabled
+cg heuristic zero cost waiting transitions: enabled
+cg heuristic fire waiting transitions only if local problems matches state: disabled
+prefopsorderedmode: enabled with 1 goals
+prefopscheapestmode: enabled with 1 goals
+prefopsmostexpensivemode: disabled with 1000 goals
+prefopsrandmode: disabled with 1000 goals
+prefopsconcurrentmode: disabled
+reset after solution was found: enabled
+reward only preferred operators queue: disabled
+gvalues by: timestamp
+queue management mode: priority based
+known by logical state only filtering: disabled
+use_subgoals_to_break_makespan_ties: disabled
+reschedule plans: enabled
+epsilonize internally: enabled
+epsilonize externally: disabled
+keep original plans: enabled
+plan name: "./output_plan"
+plan monitor file: "" (no monitoring)
+monitoring verify timestamps: disabled
+
+contains universal conditions: 0
+giving prior boost to open list 0
+init
+open list sizes (priorities): 0 (-5000),  0 (0),  0 (0),  0 (0), 
+initializing cyclic causal graph heuristic...done.
+best heuristic values of queues: 18/-1/-1/-1 [expanded 1 state(s)]
+best heuristic values of queues: 14.98/-1/-1/-1 [expanded 2 state(s)]
+best heuristic values of queues: 14/-1/-1/-1 [expanded 3 state(s)]
+best heuristic values of queues: 10.98/-1/-1/-1 [expanded 5 state(s)]
+best heuristic values of queues: 8/-1/-1/-1 [expanded 6 state(s)]
+best heuristic values of queues: 6.98/-1/-1/-1 [expanded 7 state(s)]
+best heuristic values of queues: 6/-1/-1/-1 [expanded 8 state(s)]
+best heuristic values of queues: 5.98/-1/-1/-1 [expanded 9 state(s)]
+best heuristic values of queues: 3/-1/-1/-1 [expanded 10 state(s)]
+best heuristic values of queues: 2.98/-1/-1/-1 [expanded 11 state(s)]
+best heuristic values of queues: 2/-1/-1/-1 [expanded 12 state(s)]
+best heuristic values of queues: 1.98/-1/-1/-1 [expanded 13 state(s)]
+best heuristic values of queues: 1/-1/-1/-1 [expanded 14 state(s)]
+best heuristic values of queues: 0/-1/-1/-1 [expanded 17 state(s)]
+new solution has been found.
+
+found new plan:
+0.00000000: (fly_carrier r3 l2 l1 c2) [1.00000000]
+1.01000000: (load_carrier b3 s1 r3 l1 c2 sl3) [3.00000000]
+4.02000000: (fly_carrier r3 l1 l3 c2) [1.00000000]
+5.03000000: (unload_carrier b3 s1 r3 l3 u1 c2 sl3) [3.00000000]
+8.04000000: (start_accompany r2 l2 p1) [1.00000000]
+9.05000000: (move r2 l2 l3) [1.00000000]
+10.06000000: (accompany r2 l3 p1 u1) [1.00000000]
+rescheduled plan:
+0.00100000: (fly_carrier r3 l2 l1 c2) [1.00000000]
+1.01100000: (load_carrier b3 s1 r3 l1 c2 sl3) [3.00000000]
+4.02200000: (fly_carrier r3 l1 l3 c2) [1.00000000]
+5.03200000: (unload_carrier b3 s1 r3 l3 u1 c2 sl3) [3.00000000]
+0.00100000: (start_accompany r2 l2 p1) [1.00000000]
+1.01200000: (move r2 l2 l3) [1.00000000]
+2.02200000: (accompany r2 l3 p1 u1) [1.00000000]
+solution with original makespan 11.06 found (ignoring no-moving-targets-rule).
+plan length: 7 step(s).
+makespan   : 8.032
+rescheduled makespan   : 8.032
+search time: 0 seconds - walltime: 0.0022521 seconds
+total time: 0 seconds - walltime: 0.00828695 seconds
+0.00100000: (fly_carrier r3 l2 l1 c2) [1.00000000]
+1.01100000: (load_carrier b3 s1 r3 l1 c2 sl3) [3.00000000]
+4.02200000: (fly_carrier r3 l1 l3 c2) [1.00000000]
+5.03200000: (unload_carrier b3 s1 r3 l3 u1 c2 sl3) [3.00000000]
+0.00100000: (start_accompany r2 l2 p1) [1.00000000]
+1.01200000: (move r2 l2 l3) [1.00000000]
+2.02200000: (accompany r2 l3 p1 u1) [1.00000000]

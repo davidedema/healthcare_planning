@@ -1,0 +1,175 @@
+parsing...
+contains quantified condition(s): false
+instantiating...
+trivial rules: converted to facts.
+starting instantiation [111 rules]...
+finding invariants...
+finding invariants... 33 initial candidates
+[0.020s cpu, 0.020s wall-clock]
+checking invariant weight... [0.000s cpu, 0.000s wall-clock]
+instantiating groups...
+choosing groups...
+79 uncovered facts (before using the results from the invariant synthesis)
+21 uncovered facts
+building translation key...
+building strips to sas dictionary...
+translating task...
+processing axioms...
+found 0 axioms that are always true and 0 that are always false
+constrained 258 conditions
+writing output...
+done!
+contains_quantified_conditions: 0
+building causal graph...
+the causal graph is not acyclic.
+variable var17 is not necessary!
+variable var29 is not necessary!
+variable var32 is not necessary!
+34 variables of 37 necessary
+140 of 140 operators necessary.
+0 of 0 axiom_relational rules necessary.
+0 of 0 axiom_functional rules necessary.
+building domain transition graphs...
+solveable in poly time 0
+building successor generator...
+all_operator_indices.size(): 140
+writing output...
+printing sg 
+34
+done
+
+
+planner paramters:
+anytime search: disabled
+timeout if plan was found: 0 seconds (no timeout)
+timeout while no plan was found: 0 seconds (no timeout)
+greedy search: disabled
+verbose: enabled
+lazy heuristic evaluation: enabled
+use caching in heuristic.
+cyclic cg heuristic: enabled 	preferred operators: enabled
+makespan heuristic: disabled 	preferred operators: disabled
+no heuristic: disabled
+cg heuristic zero cost waiting transitions: enabled
+cg heuristic fire waiting transitions only if local problems matches state: disabled
+prefopsorderedmode: enabled with 1 goals
+prefopscheapestmode: enabled with 1 goals
+prefopsmostexpensivemode: disabled with 1000 goals
+prefopsrandmode: disabled with 1000 goals
+prefopsconcurrentmode: disabled
+reset after solution was found: enabled
+reward only preferred operators queue: disabled
+gvalues by: timestamp
+queue management mode: priority based
+known by logical state only filtering: disabled
+use_subgoals_to_break_makespan_ties: disabled
+reschedule plans: enabled
+epsilonize internally: enabled
+epsilonize externally: disabled
+keep original plans: enabled
+plan name: "./output_plan"
+plan monitor file: "" (no monitoring)
+monitoring verify timestamps: disabled
+
+contains universal conditions: 0
+giving prior boost to open list 0
+init
+open list sizes (priorities): 0 (-5000),  0 (0),  0 (0),  0 (0), 
+initializing cyclic causal graph heuristic...done.
+best heuristic values of queues: 50/-1/-1/-1 [expanded 1 state(s)]
+best heuristic values of queues: 42.98/-1/-1/-1 [expanded 2 state(s)]
+best heuristic values of queues: 42/-1/-1/-1 [expanded 3 state(s)]
+best heuristic values of queues: 40/-1/-1/-1 [expanded 6 state(s)]
+best heuristic values of queues: 38.98/-1/-1/-1 [expanded 7 state(s)]
+best heuristic values of queues: 38/-1/-1/-1 [expanded 8 state(s)]
+best heuristic values of queues: 37.98/-1/-1/-1 [expanded 9 state(s)]
+best heuristic values of queues: 35/-1/-1/-1 [expanded 10 state(s)]
+best heuristic values of queues: 31.98/-1/-1/-1 [expanded 11 state(s)]
+best heuristic values of queues: 31/-1/-1/-1 [expanded 12 state(s)]
+best heuristic values of queues: 27.98/-1/-1/-1 [expanded 14 state(s)]
+best heuristic values of queues: 27/-1/-1/-1 [expanded 28 state(s)]
+best heuristic values of queues: 25.98/-1/-1/-1 [expanded 29 state(s)]
+best heuristic values of queues: 25/-1/-1/-1 [expanded 30 state(s)]
+best heuristic values of queues: 24.98/-1/-1/-1 [expanded 31 state(s)]
+best heuristic values of queues: 22/-1/-1/-1 [expanded 32 state(s)]
+best heuristic values of queues: 20.98/-1/-1/-1 [expanded 33 state(s)]
+best heuristic values of queues: 20/-1/-1/-1 [expanded 38 state(s)]
+best heuristic values of queues: 16.98/-1/-1/-1 [expanded 41 state(s)]
+best heuristic values of queues: 14/-1/-1/-1 [expanded 42 state(s)]
+best heuristic values of queues: 12.98/-1/-1/-1 [expanded 44 state(s)]
+best heuristic values of queues: 12/-1/-1/-1 [expanded 45 state(s)]
+best heuristic values of queues: 10.98/-1/-1/-1 [expanded 47 state(s)]
+best heuristic values of queues: 10/-1/-1/-1 [expanded 48 state(s)]
+best heuristic values of queues: 7.98/-1/-1/-1 [expanded 49 state(s)]
+best heuristic values of queues: 6/-1/-1/-1 [expanded 50 state(s)]
+best heuristic values of queues: 5.98/-1/-1/-1 [expanded 51 state(s)]
+best heuristic values of queues: 3/-1/-1/-1 [expanded 52 state(s)]
+best heuristic values of queues: 2.98/-1/-1/-1 [expanded 54 state(s)]
+best heuristic values of queues: 2/-1/-1/-1 [expanded 55 state(s)]
+best heuristic values of queues: 1.98/-1/-1/-1 [expanded 56 state(s)]
+best heuristic values of queues: 1/-1/-1/-1 [expanded 57 state(s)]
+best heuristic values of queues: 0/-1/-1/-1 [expanded 59 state(s)]
+new solution has been found.
+
+found new plan:
+0.00000000: (fly_carrier r3 l2 l1 c2) [1.00000000]
+1.01000000: (load_carrier b3 s1 r3 l1 c2 sl3) [3.00000000]
+4.02000000: (fly_carrier r3 l1 l3 c2) [1.00000000]
+5.03000000: (unload_carrier b3 s1 r3 l3 u1 c2 sl3) [3.00000000]
+8.04000000: (fly_carrier r3 l3 l1 c2) [1.00000000]
+9.05000000: (load_carrier b2 s2 r3 l1 c2 sl3) [3.00000000]
+12.06000000: (fly_carrier r3 l1 l2 c2) [1.00000000]
+13.07000000: (unload_carrier b2 s2 r3 l2 u3 c2 sl3) [3.00000000]
+16.08000000: (fly_carrier r3 l2 l1 c2) [1.00000000]
+16.09000000: (move_carrier r1 l2 l1 c1) [1.00000000]
+17.10000000: (load_carrier b1 s3 r1 l1 c1 sl1) [3.00000000]
+20.11000000: (move_carrier r1 l1 l2 c1) [1.00000000]
+21.12000000: (move_carrier r1 l2 l3 c1) [1.00000000]
+22.13000000: (move_carrier_shiled r1 l3 l4 c1) [2.00000000]
+24.14000000: (unload_carrier b1 s3 r1 l4 u2 c1 sl1) [3.00000000]
+27.15000000: (start_accompany r2 l2 p1) [1.00000000]
+28.16000000: (move r2 l2 l3) [1.00000000]
+29.17000000: (accompany r2 l3 p1 u1) [1.00000000]
+rescheduled plan:
+0.00100000: (fly_carrier r3 l2 l1 c2) [1.00000000]
+1.01100000: (load_carrier b3 s1 r3 l1 c2 sl3) [3.00000000]
+4.02200000: (fly_carrier r3 l1 l3 c2) [1.00000000]
+5.03200000: (unload_carrier b3 s1 r3 l3 u1 c2 sl3) [3.00000000]
+8.04200000: (fly_carrier r3 l3 l1 c2) [1.00000000]
+9.05200000: (load_carrier b2 s2 r3 l1 c2 sl3) [3.00000000]
+12.06200000: (fly_carrier r3 l1 l2 c2) [1.00000000]
+13.07200000: (unload_carrier b2 s2 r3 l2 u3 c2 sl3) [3.00000000]
+16.08200000: (fly_carrier r3 l2 l1 c2) [1.00000000]
+16.09200000: (move_carrier r1 l2 l1 c1) [1.00000000]
+17.10200000: (load_carrier b1 s3 r1 l1 c1 sl1) [3.00000000]
+20.11200000: (move_carrier r1 l1 l2 c1) [1.00000000]
+21.12200000: (move_carrier r1 l2 l3 c1) [1.00000000]
+22.13200000: (move_carrier_shiled r1 l3 l4 c1) [2.00000000]
+24.14200000: (unload_carrier b1 s3 r1 l4 u2 c1 sl1) [3.00000000]
+0.00100000: (start_accompany r2 l2 p1) [1.00000000]
+1.01200000: (move r2 l2 l3) [1.00000000]
+2.02200000: (accompany r2 l3 p1 u1) [1.00000000]
+solution with original makespan 30.17 found (ignoring no-moving-targets-rule).
+plan length: 18 step(s).
+makespan   : 27.142
+rescheduled makespan   : 27.142
+search time: 0.01 seconds - walltime: 0.00688601 seconds
+total time: 0.01 seconds - walltime: 0.0128939 seconds
+0.00100000: (fly_carrier r3 l2 l1 c2) [1.00000000]
+1.01100000: (load_carrier b3 s1 r3 l1 c2 sl3) [3.00000000]
+4.02200000: (fly_carrier r3 l1 l3 c2) [1.00000000]
+5.03200000: (unload_carrier b3 s1 r3 l3 u1 c2 sl3) [3.00000000]
+8.04200000: (fly_carrier r3 l3 l1 c2) [1.00000000]
+9.05200000: (load_carrier b2 s2 r3 l1 c2 sl3) [3.00000000]
+12.06200000: (fly_carrier r3 l1 l2 c2) [1.00000000]
+13.07200000: (unload_carrier b2 s2 r3 l2 u3 c2 sl3) [3.00000000]
+16.08200000: (fly_carrier r3 l2 l1 c2) [1.00000000]
+16.09200000: (move_carrier r1 l2 l1 c1) [1.00000000]
+17.10200000: (load_carrier b1 s3 r1 l1 c1 sl1) [3.00000000]
+20.11200000: (move_carrier r1 l1 l2 c1) [1.00000000]
+21.12200000: (move_carrier r1 l2 l3 c1) [1.00000000]
+22.13200000: (move_carrier_shiled r1 l3 l4 c1) [2.00000000]
+24.14200000: (unload_carrier b1 s3 r1 l4 u2 c1 sl1) [3.00000000]
+0.00100000: (start_accompany r2 l2 p1) [1.00000000]
+1.01200000: (move r2 l2 l3) [1.00000000]
+2.02200000: (accompany r2 l3 p1 u1) [1.00000000]
