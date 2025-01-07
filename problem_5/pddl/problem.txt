@@ -1,36 +1,103 @@
-set instance ra box_robot
-set instance rb guide_robot
-set instance la location
-set instance lb location
-set instance lc location
-set instance ld location
-set instance ua unit
-set instance ba box
-set instance sa supply
-set instance ca carrier
-set instance sla slot
-set instance slb slot
-set instance pa person
+set instance r1 box_robot
+set instance r2 guide_robot
+set instance r3 box_robot
+set instance r4 guide_robot
+set instance l1 location
+set instance l2 location
+set instance l3 location
+set instance l4 location
+set instance l5 location
+set instance l6 location
+set instance l7 location
+set instance l8 location
+set instance u1 unit
+set instance u2 unit
+set instance u3 unit
+set instance u4 unit
+set instance u5 unit
+set instance u6 unit
+set instance u7 unit
+set instance b1 box
+set instance b2 box
+set instance b3 box
+set instance b4 box
+set instance b5 box
+set instance p1 person
+set instance p2 person
+set instance p3 person
+set instance p4 person
+set instance s1 supply
+set instance s2 supply
+set instance s3 supply
+set instance s4 supply
+set instance s5 supply
+set instance c1 carrier
+set instance c2 carrier
+set instance sl1 slot
+set instance sl2 slot
+set instance sl3 slot
 
-set predicate (adjacent la lb)
-set predicate (adjacent lb la)
-set predicate (adjacent lb lc)
-set predicate (adjacent lc lb)
-set predicate (adjacent lc ld)
-set predicate (adjacent ld lc)
-set predicate (belongs ua lc)
-set predicate (at ba la)
-set predicate (atl ra lb)
-set predicate (atl rb lb)
-set predicate (free ra)
-set predicate (empty ba)
-set predicate (has_supply_at sa la)
-set predicate (has_slot ca sla)
-set predicate (has_slot ca slb)
-set predicate (empty_slot sla)
-set predicate (empty_slot slb)
-set predicate (has ra ca)
-set predicate (at_location_carrier ca lb)
-set predicate (inl pa lb)
+set predicate (adjacent l1 l2)
+set predicate (adjacent l2 l1)
+set predicate (adjacent l2 l3)
+set predicate (adjacent l3 l2)
+set predicate (adjacent l3 l4)
+set predicate (adjacent l4 l3)
+set predicate (adjacent l3 l5)
+set predicate (adjacent l5 l3)
+set predicate (adjacent l5 l6)
+set predicate (adjacent l6 l5)
+set predicate (adjacent l2 l7)
+set predicate (adjacent l7 l2)
+set predicate (adjacent l7 l8)
+set predicate (adjacent l8 l7)
+set predicate (belongs u1 l3)
+set predicate (belongs u2 l4)
+set predicate (belongs u3 l2)
+set predicate (belongs u4 l6)
+set predicate (belongs u5 l6)
+set predicate (belongs u6 l8)
+set predicate (belongs u7 l7)
+set predicate (at b1 l1)
+set predicate (at b2 l1)
+set predicate (at b3 l1)
+set predicate (at b4 l1)
+set predicate (at b5 l1)
+set predicate (atl r1 l2)
+set predicate (atl r2 l2)
+set predicate (atl r3 l2)
+set predicate (atl r4 l2)
+set predicate (inl p1 l2)
+set predicate (inl p2 l2)
+set predicate (inl p3 l2)
+set predicate (inl p4 l2)
+set predicate (in p1 u3)
+set predicate (in p2 u3)
+set predicate (in p3 u3)
+set predicate (in p4 u3)
+set predicate (free r1)
+set predicate (free r2)
+set predicate (free r3)
+set predicate (free r4)
+set predicate (empty b1)
+set predicate (empty b2)
+set predicate (empty b3)
+set predicate (empty b4)
+set predicate (empty b5)
+set predicate (has_supply_at s1 l1)
+set predicate (has_supply_at s2 l1)
+set predicate (has_supply_at s3 l1)
+set predicate (has_supply_at s4 l1)
+set predicate (has_supply_at s5 l1)
+set predicate (has_slot c1 sl1)
+set predicate (has_slot c1 sl2)
+set predicate (has_slot c2 sl3)
+set predicate (at_location_carrier c1 l2)
+set predicate (at_location_carrier c2 l2)
+set predicate (has r3 c2)
+set predicate (has r1 c1)
+set predicate (empty_slot sl1)
+set predicate (empty_slot sl2)
+set predicate (empty_slot sl3)
 
-set goal (and (has_unit sa ua) (in pa ua))
+set goal (and (has_unit s1 u1) (has_unit s2 u3) (has_unit s3 u2) (has_unit s4 u6) (has_unit s5 u5) (in p1 u1) (in p2 u3) (in p3 u4) (in p4 u4))
