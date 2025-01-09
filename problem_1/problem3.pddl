@@ -48,7 +48,7 @@
             (has_unit s2 u3)
             (has_unit s3 u2)
             (in p1 u1)
-            (in p2 u2)
+            (in p2 u1)
         )
     )
 

@@ -15,35 +15,6 @@
         sl1 sl2 sl3 - slot
     )
 
-    (:htn
-        :parameters ()
-        :subtasks
-        (and
-            (task0
-                (complete_order_task s1 u1)
-            )
-            (task1
-                (complete_order_task s2 u3)
-            )
-            (task2
-                (complete_order_task s3 u2)
-            )
-            (task3
-                (guide_task p1 u1)
-            )
-            (task4
-                (guide_task p2 u1)
-            )
-        )
-        :ordering
-        (and
-            (task0<task1)
-            (task1<task2)
-            (task2<task3)
-            (task3<task4)
-        )
-    )
-
     (:init
         (adjacent l1 l2)
         (adjacent l2 l1)
@@ -88,4 +59,15 @@
         (empty_slot sl2)
         (empty_slot sl3)
     )
+
+    (:goal
+        (and
+            (has_unit s1 u1)
+            (has_unit s2 u3)
+            (has_unit s3 u2)
+            (in p1 u1)
+            (in p2 u1)
+        )
+    )
+
 )

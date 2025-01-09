@@ -100,4 +100,4 @@ set predicate (empty_slot sl1)
 set predicate (empty_slot sl2)
 set predicate (empty_slot sl3)
 
-set goal (and (has_unit s1 u1) (has_unit s2 u3) (has_unit s3 u2) (has_unit s4 u6) (has_unit s5 u5) (in p1 u1) (in p2 u6) (in p3 u4) (in p4 u4))
+set goal (and (has_unit s1 u1) (has_unit s2 u3) (has_unit s3 u2) (has_unit s4 u6) (has_unit s5 u5) (in p1 u1) (in p2 u5) (in p3 u4) (in p4 u4))

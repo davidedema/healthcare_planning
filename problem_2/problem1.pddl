@@ -2,48 +2,18 @@
     (:domain healthcare)
     (:objects
         r1 - shilded_bot
-        r3 - flying_robot
-        r2 - guide_robot
         l1 l2 - normal_location
         l3 - normal_location
         l4 - dangerous_location
         u1 u2 u3 - unit
         b1 b2 b3 - box
-        p1 p2 - person
         s1 s2 s3 - supply
-        c1 c2 - carrier
+        c1 - carrier
         sl1 sl2 sl3 - slot
+        ; empty objects for unused predicates (otherwise ff complains)
+        r2 - guide_robot
+        p1 - person
     )
-
-    (:htn
-        :parameters ()
-        :subtasks
-        (and
-            (task0
-                (complete_order_task s1 u1)
-            )
-            (task1
-                (complete_order_task s2 u3)
-            )
-            (task2
-                (complete_order_task s3 u2)
-            )
-            (task3
-                (guide_task p1 u1)
-            )
-            (task4
-                (guide_task p2 u1)
-            )
-        )
-        :ordering
-        (and
-            (task0<task1)
-            (task1<task2)
-            (task2<task3)
-            (task3<task4)
-        )
-    )
-
     (:init
         (adjacent l1 l2)
         (adjacent l2 l1)
@@ -58,15 +28,7 @@
         (at b2 l1)
         (at b3 l1)
         (atl r1 l2)
-        (atl r2 l2)
-        (atl r3 l2)
-        (inl p1 l2)
-        (inl p2 l2)
-        (in p1 u3)
-        (in p2 u3)
         (free r1)
-        (free r2)
-        (free r3)
         (empty b1)
         (empty b2)
         (empty b3)
@@ -76,16 +38,19 @@
 
         (has_slot c1 sl1)
         (has_slot c1 sl2)
-        (has_slot c2 sl3)
 
         (at_location_carrier c1 l2)
-        (at_location_carrier c2 l2)
 
-        (has r3 c2)
         (has r1 c1)
 
         (empty_slot sl1)
         (empty_slot sl2)
         (empty_slot sl3)
     )
+    (:goal
+        (and
+            (has_unit s1 u1)
+        )
+    )
+
 )

@@ -38,7 +38,7 @@
                 (guide_task p1 u1)
             )
             (task4
-                (guide_task p2 u6)
+                (guide_task p2 u5)
             )
             (task7
                 (guide_task p3 u4)
