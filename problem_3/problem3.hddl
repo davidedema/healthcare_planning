@@ -32,7 +32,7 @@
                 (guide_task p1 u1)
             )
             (task4
-                (guide_task p2 u3)
+                (guide_task p2 u2)
             )
         )
         :ordering

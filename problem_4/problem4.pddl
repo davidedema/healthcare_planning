@@ -92,7 +92,7 @@
             (has_unit s4 u6)
             (has_unit s5 u5)
             (in p1 u1)
-            (in p2 u3)
+            (in p2 u6)
             (in p3 u4)
             (in p4 u4)
         )
