@@ -35,7 +35,7 @@ Clone the repository
 ```
 git clone https://github.com/davidedema/automated_planning.git
 ```
-In order to run the project you'll need to clone it and install planutils. For this sake we suggest to use the Dockerfile provided in the repository
+In order to run the project you'll need to clone it and install planutils. For this purpose we suggest to use the Dockerfile provided in the repository
 ```
 docker build . -t healthcare_planning:v1
 ```
